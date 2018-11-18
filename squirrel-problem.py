@@ -61,6 +61,11 @@ def unitTests(test: int) -> tuple:
         tree = (5,5)
         nuts = [(5,5), (1,4), (3, 2), (9, 10), (12, 12)]
         return((squirrel, tree, nuts))
+    elif test == 3:
+        squirrel = (0,0)
+        tree = (4,4)
+        nuts = [(-2,-3), (4,8), (-1,-1), (5,5), (-2,0)]
+        return((squirrel, tree, nuts))
     else:
         print("No unit test available!")
         ## return dummy values
