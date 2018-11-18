@@ -140,7 +140,7 @@ def getInitialStep(squirrel: tuple,
     ## let's sort the list by the x values (sort for lower x values)
     distances = sorted(distances, key = lambda x: x[0][0])
     ## let's sort the list by distance (sort for lower distance values)
-    distances = sorted(distances, key=lambda x: x[1])
+    distances = sorted(distances, key = lambda x: x[1])
     ## get the coord of the first nut
     initial_step = distances[0][0]
     ## get a list of nuts without the first sorted element from distances
