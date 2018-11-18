@@ -1,6 +1,7 @@
 ##!/bin/python3
 
 import random
+import sys
 
 ## Xiaoyi's squirrel problem
 ## There's a squirrel, tree, and scattered nuts
@@ -17,7 +18,7 @@ def main(test: int = 0,
          squirrel: tuple = (),
          tree: tuple = (),
          nuts: list = [],
-         plot = False) -> int:
+         plot: bool = False) -> int:
     ## generate the game
     if test == 0:
         ## if passing in values, use those
@@ -109,26 +110,31 @@ def unitTests(test: int) -> tuple:
 ## tree = tuple : (x, y)
 ## num_nuts = int
 ## nuts = list : [(x,y), ...]
-## currently using 2^32 for maximum random int
+## currently using 2**32 for maximum random int
 ## returns a list : [ squirrel(x,y), tree(x,y), nuts[(x,y), ...]]
 def genGame(squirrel: tuple = (),
             tree: tuple = (),
             num_nuts: int = 0,
             nuts: list = []) -> tuple:
+    ## set a max integer
+    if not num_nuts:
+        max_int = random.randint(1, int(1e3))
     ## check if we need to generate values
     if not squirrel:
-        squirrel = (random.randint(0, 2^32),
-                    random.randint(0, 2^32))
+        squirrel = (random.randint(0, max_int),
+                    random.randint(0, max_int))
     if not tree:
-        tree = (random.randint(0, 2^32),
-                random.randint(0, 2^32))
+        tree = (random.randint(0, max_int),
+                random.randint(0, max_int))
     ## if we don't pass in the nuts coordinates
     if not nuts:
         if num_nuts == 0:
-            num_nuts = random.randint(1, 2^32)
+            ## generate the number of nuts such that
+            ## is bound by max_int
+            num_nuts = random.randint(1, max_int)
         ## set a random # of nuts taken from a 32-bit integer
-        nuts = zip(random.sample(range(2^32), num_nuts),
-                   random.sample(range(2^32), num_nuts))
+        nuts = zip(random.sample(range(max_int), num_nuts),
+                   random.sample(range(max_int), num_nuts))
         ## return tuples for nuts
         nuts = [coord for coord in nuts]
     ## return the game
