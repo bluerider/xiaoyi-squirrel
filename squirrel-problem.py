@@ -11,11 +11,12 @@ import random
 ## preference : up/down, left/right
 ## I think what they are saying is that they want the top left-most
 ## closest nut
-
-def main(test = 0,
-         squirrel = (),
-         tree = (),
-         nuts = []):
+## function also returns the total distance as value
+## return total distance : int
+def main(test: int = 0,
+         squirrel: tuple = (),
+         tree: tuple = (),
+         nuts: list = []) -> int:
     ## generate the game
     if test == 0:
         ## if passing in values, use those
