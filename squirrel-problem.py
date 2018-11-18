@@ -76,21 +76,33 @@ def unitTests(test: int) -> tuple:
         squirrel = (4,4)
         tree = (1,3)
         nuts = [(2,2), (1,3)]
-        return((squirrel, tree, nuts))
     elif test == 2:
         squirrel = (0,0)
         tree = (5,5)
         nuts = [(5,5), (1,4), (3, 2), (9, 10), (12, 12)]
-        return((squirrel, tree, nuts))
     elif test == 3:
         squirrel = (0,0)
         tree = (4,4)
         nuts = [(-2,-3), (4,8), (-1,-1), (5,5), (-2,0)]
-        return((squirrel, tree, nuts))
+    elif test == 4:
+        squirrel = (2,2)
+        tree = (3,3)
+        nuts = [(3,3), (1,1), (0,0), (4,4)]
+    elif test == 5:
+        squirrel = (2,2)
+        tree = (2,3)
+        nuts = [(2,1), (2,3), (3,2), (1,2)]
+    elif test == 6:
+        squirrel = (2,2)
+        tree = (4,4)
+        nuts = [(4,4), (0,0), (0,4), (4,0)]
     else:
+        ## set dummy values
+        squirrel = 0
+        tree = 0
+        nuts = 0
         print("No unit test available!")
-        ## return dummy values
-        return(0,0,0)
+    return((squirrel, tree, nuts))
     
 ## generate the squirrel, tree, and nuts position
 ## squirrel = tuple : (x, y)
@@ -161,10 +173,10 @@ def getInitialStep(squirrel: tuple,
     ## we need to first get all the distances from nuts to the squirrel
     ## returns a list of tuples : [(x,y, distance), ...]
     distances = [(nut, distance(squirrel, nut)) for nut in nuts]
-    ## let's sort the list by the y values (sort for higher y values)
-    distances = sorted(distances, key = lambda x: x[0][1], reverse = True)
     ## let's sort the list by the x values (sort for lower x values)
     distances = sorted(distances, key = lambda x: x[0][0])
+    ## let's sort the list by the y values (sort for higher y values)
+    distances = sorted(distances, key = lambda x: x[0][1], reverse = True)
     ## let's sort the list by distance (sort for lower distance values)
     distances = sorted(distances, key = lambda x: x[1])
     ## get the coord of the first nut
