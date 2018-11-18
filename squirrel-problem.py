@@ -12,10 +12,16 @@ import random
 ## I think what they are saying is that they want the top left-most
 ## closest nut
 
-def main(test = 0):
+def main(test = 0,
+         squirrel = (),
+         tree = (),
+         nuts = []):
     ## generate the game
     if test == 0:
-        squirrel, tree, nuts = genGame()
+        ## if passing in values, use those
+        squirrel, tree, nuts = genGame(squirrel = squirrel,
+                                       tree = tree,
+                                       nuts = nuts)
     else:
         ## run some unit tests if called
         squirrel, tree, nuts = unitTests(test)
