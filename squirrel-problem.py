@@ -54,7 +54,7 @@ def main(test: int = 0,
         plt.scatter(x = [nut[0] for nut in rest_of_nuts],
                     y = [nut[1] for nut in rest_of_nuts],
                     color = "orange",
-                   marker = 'h')
+                    marker = 'h')
         plt.suptitle(f"Total Distance : {total_distance}")
         plt.scatter(x = initial_step[0],
                     y = initial_step[1],
@@ -106,10 +106,10 @@ def genGame(squirrel: tuple = (),
     ## check if we need to generate values
     if not squirrel:
         squirrel = (random.randint(0, 2^32),
-                   random.randint(0, 2^32))
+                    random.randint(0, 2^32))
     if not tree:
         tree = (random.randint(0, 2^32),
-               random.randint(0, 2^32))
+                random.randint(0, 2^32))
     ## if we don't pass in the nuts coordinates
     if not nuts:
         if num_nuts == 0:
@@ -141,7 +141,7 @@ def distance(origin: tuple,
 ## between tree and nut
 ## returns an int
 def getDistances(tree: tuple,
-                nuts: list) -> int:
+                 nuts: list) -> int:
     ## calculate the distance for each tree nut combination
     ## since the squirrel has to travel to the nut then back
     ## distance travelled per trip is actually twice the
