@@ -36,7 +36,7 @@ def main(test = 0):
     rest_route_distance = getDistances(tree = tree,
                                        nuts = rest_of_nuts)
     ## get the total distance
-    total_distance = first_route = rest_route_distance
+    total_distance = first_route + rest_route_distance
     ## print some values
     print(f"Squirrel: {squirrel}\nTree: {tree}\nNuts: {nuts}\nInitial Step: {initial_step}\nDistance: {total_distance}\n")
     ## return the total distance
