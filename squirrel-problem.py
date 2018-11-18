@@ -128,7 +128,7 @@ def getDistances(tree: tuple,
 ## the optimal location for the first nut
 ## then the rest of the problem is simply movement
 ## between the tree and nuts
-## returns a tuple : (distance, rest_of_nuts[])
+## returns a tuple : (coord(), rest_of_nuts[])
 def getInitialStep(squirrel: tuple,
                    tree: tuple,
                    nuts: list) -> tuple:
