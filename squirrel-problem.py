@@ -29,7 +29,7 @@ def main(test: int = 0,
         ## run some unit tests if called
         squirrel, tree, nuts = unitTests(test)
     ## sanity check
-    if squirrel == 0:
+    if squirrel == 0 or not squirrel:
         print("Missing initial values")
         return
     ## get the initial step
@@ -50,24 +50,11 @@ def main(test: int = 0,
     print(f"Squirrel: {squirrel}\nTree: {tree}\nNuts: {nuts}\nInitial Step: {initial_step}\nDistance: {total_distance}\n")
     ## plot some stuff if requested
     if plot == True:
-        from matplotlib import pyplot as plt
-        from matplotlib import patches as mpatches
-        plt.scatter(x = [nut[0] for nut in rest_of_nuts],
-                    y = [nut[1] for nut in rest_of_nuts],
-                    color = "orange",
-                    marker = 'h')
-        plt.suptitle(f"Total Distance : {total_distance}")
-        plt.scatter(x = initial_step[0],
-                    y = initial_step[1],
-                    marker = "h",
-                    color = "red")
-        plt.scatter(x = squirrel[0], y = squirrel[1], color = "brown", marker="v")
-        plt.scatter(x = tree[0], y = tree[1], color = "green", marker="P")
-        red_patch = mpatches.Patch(color='red', label='initial nut')
-        orange_patch = mpatches.Patch(color='orange', label='nuts')
-        brown_patch = mpatches.Patch(color='brown', label='squirrel')
-        green_patch = mpatches.Patch(color='green', label='tree')
-        plt.legend(handles=[red_patch, orange_patch, green_patch, brown_patch])
+        plotGame(squirrel = squirrel,
+                 tree = tree,
+                 initial_step = initial_step,
+                 nuts = rest_of_nuts,
+                 total_distance = total_distance)
     ## return the total distance
     return(total_distance)
 
@@ -192,6 +179,33 @@ def getInitialStep(squirrel: tuple,
     truncated_nuts.remove(initial_step)
     ## return some values
     return(initial_step, truncated_nuts)
+    
+def plotGame(squirrel: tuple,
+             tree: tuple,
+             initial_step: tuple,
+             nuts: list,
+             total_distance: int) -> None:
+    from matplotlib import pyplot as plt
+    from matplotlib import patches as mpatches
+    
+    plt.scatter(x = [nut[0] for nut in nuts],
+                y = [nut[1] for nut in nuts],
+                color = "orange",
+                marker = 'h')
+    plt.suptitle(f"Total Distance : {total_distance}")
+    plt.scatter(x = initial_step[0],
+                y = initial_step[1],
+                marker = "h",
+                color = "red")
+    plt.scatter(x = squirrel[0], y = squirrel[1], color = "brown", marker="v")
+    plt.scatter(x = tree[0], y = tree[1], color = "green", marker="P")
+    red_patch = mpatches.Patch(color='red', label='initial nut')
+    orange_patch = mpatches.Patch(color='orange', label='nuts')
+    brown_patch = mpatches.Patch(color='brown', label='squirrel')
+    green_patch = mpatches.Patch(color='green', label='tree')
+    plt.legend(handles=[red_patch, orange_patch, green_patch, brown_patch])
+    ## return void
+    return(None)
     
 ## cookie cutter main call
 if __name__ == '__main__':
